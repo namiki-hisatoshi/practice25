@@ -7,7 +7,7 @@ puts <<~TEXT
               ======ルール======
   ・1~9の数字を選択すると該当する数字の場所に○を置く
 
-  ・先に縦・横・斜めの１列が揃うと勝利
+  ・縦・横・斜めの１列が揃うと終了
 
   TEXT
 
@@ -38,7 +38,7 @@ def choose_num(tables)
   tables.each do |table|
     puts "|#{table[0]}" + "|" + "#{table[1]}" + "|" + "#{table[2]}" + "|"
   end
-  tables.map!
+  tables
 end
 
 # 結果を判定
@@ -46,13 +46,13 @@ def check_decidion(chosen_num)
   chosen_num = chosen_num.flatten
   # 横のパターン　３通り
   # 1-2-3
-  if chosen_num[0, 1, 2] == ["○", "○", "○"]
+  if chosen_num[0..2] == ["○", "○", "○"]
     return true
   # 4-5-6
-  elsif chosen_num[3, 4, 5] == ["○", "○", "○"]
+  elsif chosen_num[3..5] == ["○", "○", "○"]
     return true
   # 7-8-9
-  elsif chosen_num[6, 7, 8] == ["○", "○", "○"]
+  elsif chosen_num[6..8] == ["○", "○", "○"]
     return true
   # 縦のパターン　３通り
   # 1-4-7
@@ -87,6 +87,8 @@ def repeat_action(checked)
     end
    }
 end
+
+
 
 disp_table(tables)
 
