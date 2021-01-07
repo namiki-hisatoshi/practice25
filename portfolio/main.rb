@@ -46,46 +46,46 @@ def check_decidion(chosen_num)
   chosen_num = chosen_num.flatten
   # 横のパターン　３通り
   # 1-2-3
-  if chosen_num[0..2] == ["○", "○", "○"]
+  case chosen_num
+    when[0, 1, 2] === ["○", "○", "○"]
     return true
   # 4-5-6
-  elsif chosen_num[3..5] == ["○", "○", "○"]
+    when[3, 4, 5] === ["○", "○", "○"]
     return true
   # 7-8-9
-  elsif chosen_num[6..8] == ["○", "○", "○"]
+    when[6, 7, 8] === ["○", "○", "○"]
     return true
   # 縦のパターン　３通り
   # 1-4-7
-  elsif chosen_num[0, 3, 6] == ["○", "○", "○"]
+    when[0, 3, 6] === ["○", "○", "○"]
     return true
   # 2-5-8
-  elsif chosen_num[1, 4, 7] == ["○", "○", "○"]
+    when[1, 4, 7] === ["○", "○", "○"]
     return true
   # 3-6-9
-  elsif chosen_num[2, 5, 8] == ["○", "○", "○"]
+    when[2, 5, 8] === ["○", "○", "○"]
     return true
   # 斜めのパターン　２通り
   # 1-5-9
-  elsif chosen_num[0, 4, 8] == ["○", "○", "○"]
+    when[0, 4, 8] === ["○", "○", "○"]
     return true
   # 3-5-7
-  elsif chosen_num[2, 4, 6] == ["○", "○", "○"]
+    when[2, 4, 6] === ["○", "○", "○"]
     return true
-  else
+    else
     return false
   end
 end
 
 # 繰り返し判定
-def repeat_action(checked)
-  loop{
-    checked == false
-    choose_num(tables)
-    if checked == true
-      break
-      puts "揃いました！"
+def repeat_action(chosen_num, checked)
+  loop {
+    if checked == false
+      choose_num(chosen_num)
+    break elsif checked == true
+    puts "揃いました!"
     end
-   }
+  }
 end
 
 
@@ -96,4 +96,4 @@ chosen_num = choose_num(tables)
 
 checked = check_decidion(chosen_num)
 
-repeat_action(checked)
+repeat_action(chosen_num, checked)
