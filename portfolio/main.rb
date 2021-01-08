@@ -80,7 +80,7 @@ end
 # 繰り返し判定
 def repeat_action(chosen_num, checked)
   loop {
-    if checked == false
+    if checked === false
       choose_num(chosen_num)
     break elsif checked == true
     puts "揃いました!"
